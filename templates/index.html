@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>APOD Viewer</title>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- CSS Styles for UI -->
+    <style>
+      
+    body {
+        font-family: 'Roboto', sans-serif;
+        background-image: url('https://images.pexels.com/photos/4497038/pexels-photo-4497038.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'); /* Path to your background image */
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+        color: #333;
+        margin: 0;
+        padding: 0;
+    }
+
+    header {
+        background-color: rgba(28, 31, 38, 0.8); /* Semi-transparent background */
+        color: white;
+        padding: 20px;
+        text-align: center;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+    
+    header h1 {
+        margin: 0;
+        font-size: 2.5rem;
+    }
+
+    main {
+        max-width: 1200px;
+        margin: auto;
+        padding: 0 20px;
+
+        border-radius: 8px;
+
+    }
+
+
+
+    /* Update the container to be a flex layout for left-right alignment */
+    /* Update the container to be a flex layout for left-right alignment */
+    .apod-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 20px;
+        background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white background */
+                border-radius: 10px;
+    }
+
+    .apod-card {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        padding: 20px;
+        box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.1);
+        width: 100%;
+        max-width: 1200px;
+                border-radius: 10px;
+    }
+
+    .apod-content-left {
+        flex: 1;
+        padding-right: 20px;
+        text-align: left;
+    }
+
+    .apod-content-left h2 {
+        color: #2c3e50;
+    }
+
+    .apod-content-left p {
+        font-size: 1.1rem;
+        line-height: 1.6;
+        color: #555;
+    }
+
+    /* Style for the tags */
+    .tags {
+        margin-top: 15px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    .tag-card {
+        background-color: #3498db;
+        color: white;
+        padding: 8px 15px;
+        border-radius: 20px;
+        font-size: 0.9rem;
+        text-align: center;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+    }
+
+    /* Tags card hover effect */
+    .tag-card:hover {
+        background-color: #2980b9;
+    }
+
+    .apod-content-right {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+    }
+
+    .apod-image {
+        max-width: 100%;
+        border-radius: 8px;
+        height: auto;
+    }
+
+    .no-apod-message {
+        color: #555;
+        font-size: 18px;
+    }
+
+
+
+
+
+
+
+    h2, h3 {
+        color: #2c3e50;
+    }
+
+    p {
+        font-size: 1.1rem;
+        line-height: 1.6;
+    }
+
+    hr {
+        border: 0;
+        height: 1px;
+        background: #eee;
+        margin: 40px 0;
+    }
+
+    .category-container {
+	display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 20px;
+        background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white background */
+        border-radius: 10px;
+        padding: 20px;
+    }
+/* Styling for Date Filters (Month and Year) */
+.date-filter-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;  /* Space between filters */
+    margin-top: 10px;
+    max-width: 600px;  /* Optional: limit the width */
+}
+
+.date-filter-item {
+    flex: 1;
+}
+
+
+
+    .dropdown {
+        padding: 10px 20px;
+        font-size: 1.1rem;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        width: 100%;
+        max-width: 400px;
+        margin-bottom: 20px;
+    }
+
+    button {
+        padding: 10px 20px;
+        font-size: 1.1rem;
+        background-color: #3498db;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+        background-color: #2980b9;
+    }
+
+    .no-apod {
+        color: #e74c3c;
+        font-weight: bold;
+        font-size: 1.2rem;
+    }
+
+    .footer {
+        text-align: center;
+        margin-top: 40px;
+        padding: 20px;
+        background-color: #1c1f26;
+        color: white;
+    }
+
+    /* Card Grid Layout */
+    .card-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 20px;
+        margin-top: 20px;
+    }
+
+    .card {
+        position: relative;
+        background-color: white;
+        border-radius: 10px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+        transition: transform 0.3s ease;
+    }
+
+    .card img {
+        width: 100%;
+        max-width: 600px;
+        height: 400px;
+        object-fit: cover;
+    }
+
+    .card h3 {
+        margin: 10px 0;
+        font-size: 1.25rem;
+        text-align: center;
+        color: #93C572;
+        border-radius: 10px;
+        padding: 20px;
+    }
+
+    /* Hover Effect */
+    .card:hover {
+        transform: translateY(-10px);
+    }
+
+    .card .overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.7);
+        color: white;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+    }
+
+    .card:hover .overlay {
+        opacity: 1;
+    }
+
+    /* Update tags section */
+    .tags {
+        margin-top: 15px;
+        font-size: 0.9rem;
+        text-align: center;
+        border-radius: 10px;
+        padding: 20px;
+    }
+
+    .tags span {
+        display: inline-block;
+        margin: 2px 5px;
+        padding: 5px 15px;
+        background-color: #165454;
+        color: #81bbf5;
+        border-radius: 15px;
+        font-weight: bold;
+        font-size: 0.65rem;
+        text-transform: lowercase;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        transition: transform 0.3s ease;
+    }
+
+    .tags span:hover {
+        transform: scale(1.1);
+    }
+</style>
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Astronomy Picture of the Day (APOD)</h1>
+    </header>
+
+    <main>
+        <!-- Display today's APOD if available -->
+<!-- Display today's APOD if available -->
+<div class="apod-container">
+    {% if today_apod is not none %}
+        <div class="apod-card">
+            <div class="apod-content-left">
+                <h2>Today's APOD: {{ today_apod.title }}</h2>
+                <p>{{ today_apod.explanation }}</p>
+
+                <!-- Tags below the explanation -->
+                <div class="tags">
+                    {% if today_apod.tags %}
+                        {% for tag in today_apod.tags.split(',') %}
+                            <span class="tag-card">{{ tag.strip() }}</span>
+                        {% endfor %}
+                    {% else %}
+                        <span>No tags available</span>
+                    {% endif %}
+                </div>
+            </div>
+
+            <div class="apod-content-right">
+                <img src="{{ today_apod.url }}" alt="{{ today_apod.title }}" class="apod-image">
+            </div>
+        </div>
+    {% else %}
+        <div class="no-apod-message">
+            <p>No APOD available for today.</p>
+        </div>
+    {% endif %}
+</div>
+
+
+
+
+
+        <hr>
+
+        <!-- Category Filter -->
+<div class="category-container">
+    <form method="POST">
+        <!-- Category Filter -->
+        <label for="category"><strong>Select a Category:</strong></label><br>
+        <select name="category" id="category" class="dropdown">
+            <option value="Select Category">Select Category</option>
+            {% for category in categories %}
+                <option value="{{ category }}" {% if category == selected_category %}selected{% endif %}>
+                    {{ category }}
+                </option>
+            {% endfor %}
+        </select><br><br>
+
+        <!-- Flexbox layout for Month and Year filters -->
+        <div class="date-filter-container">
+            <!-- Month Filter -->
+            <div class="date-filter-item">
+                <label for="month"><strong>Select Month:</strong></label><br>
+                <select name="month" id="month" class="dropdown">
+                    <option value="">All Months</option>
+                    {% for month in months %}
+                        <option value="{{ month }}" {% if month == selected_month %}selected{% endif %}>
+                            {{ month }}
+                        </option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <!-- Year Filter -->
+            <div class="date-filter-item">
+                <label for="year"><strong>Select Year:</strong></label><br>
+                <select name="year" id="year" class="dropdown">
+                    <option value="">All Years</option>
+                    {% for year in years %}
+                        <option value="{{ year }}" {% if year == selected_year %}selected{% endif %}>
+                            {{ year }}
+                        </option>
+                    {% endfor %}
+                </select>
+            </div>
+        </div><br>
+
+        <button type="submit">Update APODs</button>
+    </form>
+</div>
+
+
+
+        <hr>
+
+        <!-- Display filtered APODs in a card grid -->
+        <div class="card-grid">
+    {% if filtered_apods %}
+        {% for apod in filtered_apods %}
+            <div class="card">
+                <a href="{{ url_for('apod_details', apod_date=apod['date']) }}">
+                    <img src="{{ apod['url'] }}" alt="{{ apod['title'] }}">
+                    <div class="overlay">
+                        <h3>{{ apod['title'] }}</h3>
+                        <!-- Display the tags -->
+                        <div class="tags">
+                            {% if apod['tags'] %}
+                                {% for tag in apod['tags'].split(',') %}
+                                    <span>{{ tag.strip() }}</span>
+                                {% endfor %}
+                            {% else %}
+                                <span>No tags available</span>
+                            {% endif %}
+                        </div>
+                    </div>
+                </a>
+            </div>
+        {% endfor %}
+    {% else %}
+        {% if selected_category and selected_category != 'Select Category' %}
+            <p class="no-apod">No APODs found for the selected category: {{ selected_category }}</p>
+        {% endif %}
+    {% endif %}
+</div>
+
+
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2024 @Samael3003-"APOD-24"</p>
+    </footer>
+
+</body>
+</html>
+

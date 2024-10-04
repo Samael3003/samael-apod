@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ apod.title }}</title>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- CSS Styles for UI -->
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #11113a;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #1c1f26;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+        }
+        main {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 0 20px;
+        }
+        .apod-container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        h2 {
+            color: #2c3e50;
+            font-size: 2rem;
+        }
+        img.apod-image {
+            width: 100%;
+            max-width: 600px;
+            height: auto;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+        p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+        hr {
+            border: 0;
+            height: 1px;
+            background: #eee;
+            margin: 40px 0;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            background-color: #1c1f26;
+            color: white;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 1.1rem;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #2980b9;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>APOD Details</h1>
+    </header>
+
+    <main>
+        <div class="apod-container">
+            <h2>{{ apod.title }}</h2>
+            <img src="{{ apod.url }}" alt="{{ apod.title }}" class="apod-image">
+            <p>{{ apod.explanation }}</p>
+            <hr>
+            <a href="{{ url_for('index') }}"><button>Back to Home</button></a>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2024 Astronomy Picture of the Day Viewer</p>
+    </footer>
+
+</body>
+</html>
+

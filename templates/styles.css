@@ -1,0 +1,142 @@
+/* General Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f4f4f9;
+    color: #333;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Header Section */
+.header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.header h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #0d3b66;
+}
+
+/* Today's APOD Section */
+.today-apod {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 40px;
+}
+
+.today-apod h2 {
+    font-size: 1.8rem;
+    color: #1d3557;
+    margin-bottom: 20px;
+}
+
+.apod-content {
+    text-align: center;
+}
+
+.apod-image {
+    max-width: 100%;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+/* Category Filter Section */
+.filter-section {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 40px;
+}
+
+.category-form {
+    display: flex;
+    align-items: center;
+}
+
+.dropdown {
+    padding: 10px;
+    font-size: 1rem;
+    margin-right: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.btn-primary {
+    padding: 10px 20px;
+    background-color: #0d3b66;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.btn-primary:hover {
+    background-color: #1d4f88;
+}
+
+/* Filtered APODs Section */
+.filtered-apods {
+    margin-bottom: 40px;
+}
+
+.apod-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.apod-card {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.apod-card h3 {
+    font-size: 1.2rem;
+    color: #1d3557;
+    margin-bottom: 10px;
+}
+
+.apod-card-image {
+    max-width: 100%;
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+
+.apod-card p {
+    font-size: 0.9rem;
+    color: #333;
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+    .today-apod h2 {
+        font-size: 1.4rem;
+    }
+
+    .apod-card h3 {
+        font-size: 1rem;
+    }
+
+    .apod-content p,
+    .apod-card p {
+        font-size: 0.8rem;
+    }
+}
+
